@@ -3,7 +3,7 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 
 const image = require('../../assets/arid.jpg')
 
-export default function Home() {
+export default function Background() {
     return (
         <ImageBackground source={image} style={styles.bg}>
             <View style={styles.bgCover} />
