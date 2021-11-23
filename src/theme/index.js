@@ -3,7 +3,8 @@ const sizes = [8, 12, 16, 20, 24, 28, 32, 40, 48, 56, 64, 80];
 const fontSizes = {
     title: 20,
     subtitle: 18,
-    body: 16,
+    p: 16,
+    p2: 14,
     caption: 12,
     button: 14,
     h5: 24,
