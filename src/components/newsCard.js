@@ -1,7 +1,8 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Card, Title } from "react-native-paper";
+import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { parseISO, formatDistance } from "date-fns";
+
+import { theme } from "../theme";
 
 const defaultImage =
   "https://firebasestorage.googleapis.com/v0/b/shared-images-afe55.appspot.com/o/default.png?alt=media&token=240af48a-ea86-47d7-bd69-13fc050927ac";
@@ -16,31 +17,48 @@ export default function NewsCard({ article, navigation }) {
   return (
     <TouchableOpacity
       style={styles.spacer}
-      onPress={() => navigation.navigate('BrowserScreen', { url: article.url })}
+      onPress={() => navigation.navigate("BrowserScreen", { url: article.url })}
     >
-      <Card>
-        <Card.Cover
-          source={{
-            uri: `${article.image.url ? article.image.url : defaultImage}`,
-          }}
-        />
-        <Card.Content>
-          <Title>{article.title}</Title>
-          <Text style={styles.time}>{timeDistance}</Text>
-        </Card.Content>
-      </Card>
+      <View style={styles.cardContainer}>
+        <View style={styles.innerCard}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: `${article.image.url ? article.image.url : defaultImage}`,
+            }}
+          />
+          <Text style={styles.subtitle}>{article.title}</Text>
+        </View>
+        <Text style={styles.time}>{timeDistance}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   cardContainer: {
-    height: 200,
+    padding: theme.spacing[0]
+  },
+  innerCard: {
+      flexDirection: 'row',
+      alignItems: 'center'
+  },
+  image: {
+      height: 80,
+      width: 80,
+      borderRadius: 10
+  },
+  subtitle: {
+      marginLeft: theme.spacing[1],
+      fontSize: theme.fontSizes.caption,
+      flex: 1,
+      flexWrap: 'wrap'
   },
   spacer: {
     marginTop: 15,
   },
   time: {
+    marginTop: theme.spacing[0],
     fontStyle: "italic",
   },
 });
