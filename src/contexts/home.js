@@ -5,9 +5,9 @@ export const HomeContext = createContext();
 
 export const HomeContextProvider = ({ children }) => {
     const [park, setPark] = useState(null);
-    const [news, setNews] = useState([]);
-    const [featuredIsLoading, setFeaturedIsLoading] = useState(false);
-    const [newsIsLoading, setNewsIsLoading] = useState(false);
+    const [articles, setArticles] = useState([]);
+    const [featuredIsLoading, setFeaturedIsLoading] = useState(true);
+    const [articlesIsLoading, setArticlesIsLoading] = useState(true);
     
     const getPark = async () => {
         try {
@@ -21,13 +21,13 @@ export const HomeContextProvider = ({ children }) => {
         }
     }
 
-    const getNews = async () => {
+    const getArticles = async () => {
         try {
-            setNewsIsLoading(true);
-            const news = await getNewsReleases();
+            setArticlesIsLoading(true);
+            const articles = await getNewsReleases();
 
-            setNews(news);
-            setNewsIsLoading(false);
+            setArticles(articles);
+            setArticlesIsLoading(false);
         } catch (err) {
             console.log(err);
         }
@@ -35,11 +35,11 @@ export const HomeContextProvider = ({ children }) => {
 
     useEffect(() => {
         getPark();
-        getNews();
+        getArticles();
     }, [])
 
     return (
-        <HomeContext.Provider value={{ park, news, featuredIsLoading, newsIsLoading }}>
+        <HomeContext.Provider value={{ park, articles, featuredIsLoading, articlesIsLoading }}>
             {children}
         </HomeContext.Provider>
     )
