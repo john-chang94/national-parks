@@ -50,3 +50,13 @@ export const stateCodes = [
   "WI",
   "WY",
 ];
+
+export const days = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+];

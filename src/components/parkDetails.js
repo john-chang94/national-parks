@@ -7,7 +7,10 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
 import { theme } from "../theme";
+import { days } from "../services/states";
 import { HomeContext } from "../contexts/home";
 import { screenWidth } from "../services/sysChecks";
 
@@ -22,26 +25,47 @@ export default function ParkDetails() {
       <View style={styles.container}>
         <ScrollView>
           <Text style={styles.title}>{park.fullName}</Text>
-          <Text style={styles.description}>{park.description}</Text>
-          <Text style={theme.spacer.bottomMd}>{address}</Text>
+          <Text style={styles.parkInfo}>{park.description}</Text>
+          <View style={styles.infoContainer}>
+            <Ionicons name="location" size={16} color='green' />
+            <Text style={theme.spacer.leftSm}>{address}</Text>
+          </View>
 
-          <Text>{hours.description}</Text>
-          <Text style={theme.spacer.topSm}>Hours of Operation</Text>
-          <Text>Mon: {hours.standardHours["monday"]}</Text>
+          <View style={styles.infoContainer}>
+            <Ionicons name="alert-circle" size={16} color='green' />
+            <Text>{hours.description}</Text>
+          </View>
+          <View style={styles.infoContainer}>
+            <Ionicons name="time" size={16} color='green' />
+            <Text style={theme.spacer.leftSm}>Hours of Operation</Text>
+          </View>
+          {/* FIXME */}
+          {days.map((day, i) => (
+            <Text key={i}>{day[i]}: {hours.standardHours[day[i+1]]}</Text>
+          ))}
+          {/* <Text>Mon: {hours.standardHours["monday"]}</Text>
           <Text>Tue: {hours.standardHours["tuesday"]}</Text>
           <Text>Wed: {hours.standardHours["wednesday"]}</Text>
           <Text>Thu: {hours.standardHours["thursday"]}</Text>
           <Text>Fri: {hours.standardHours["friday"]}</Text>
           <Text>Sat: {hours.standardHours["saturday"]}</Text>
-          <Text>Sun: {hours.standardHours["sunday"]}</Text>
+          <Text>Sun: {hours.standardHours["sunday"]}</Text> */}
 
-          <Text style={theme.spacer.topSm}>Prices</Text>
+          <View style={styles.infoContainer}>
+            <Ionicons name="logo-usd" size={16} color='green' />
+            <Text style={theme.spacer.leftSm}>Admission Costs</Text>
+          </View>
           {park.entranceFees.length &&
             park.entranceFees.map((fee, i) => (
-              <View key={i} style={styles.feesContainer}>
-                <Text>For: {fee.title}</Text>
-                <Text>Cost: ${fee.cost}</Text>
-                <Text>Info: {fee.description}</Text>
+              <View key={i}>
+                <Text>
+                  ${fee.cost} - {fee.title}
+                </Text>
+                <Text>
+                  {/* <Ionicons name="information-circle" size={14} />{" "} */}
+                  {fee.description}
+                </Text>
+                <View style={theme.horizontalRule.sm} />
               </View>
             ))}
 
@@ -62,19 +86,26 @@ const styles = StyleSheet.create({
   title: {
     fontSize: theme.fontSizes.title,
     textAlign: "center",
-    marginBottom: theme.spacing[0]
+    marginBottom: theme.spacing[0],
   },
-  description: {
+  parkInfo: {
     textAlign: "justify",
-    marginBottom: theme.spacing[2]
+    marginBottom: theme.spacing[0],
   },
-  feesContainer: {
+  hoursInfo: {
+
+  },
+  infoContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    // padding: theme.spacing[0]
     paddingTop: theme.spacing[0],
     paddingBottom: theme.spacing[0]
   },
   image: {
     height: screenWidth,
     width: "100%",
-    marginBottom: theme.spacing[1]
+    marginBottom: theme.spacing[1],
   },
 });
