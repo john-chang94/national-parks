@@ -14,7 +14,7 @@ const fontSizes = {
   h1: 112,
 };
 
-const spacing = [5, 10, 15, 20, 25, 30, 35, 40, 50];
+const spacing = [4, 10, 15, 20, 25, 30, 35, 40, 50];
 
 const spacer = {
   topSm: {

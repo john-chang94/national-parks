@@ -52,11 +52,11 @@ export const stateCodes = [
 ];
 
 export const days = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday",
+  { short: "Mon", long: "monday"},
+  { short: "Tue", long: "tuesday"},
+  { short: "Wed", long: "wednesday"},
+  { short: "Thu", long: "thursday"},
+  { short: "Fri", long: "friday"},
+  { short: "Sat", long: "saturday"},
+  { short: "Sun", long: "sunday"},
 ];

@@ -28,32 +28,27 @@ export default function ParkDetails() {
           <Text style={styles.parkInfo}>{park.description}</Text>
           <View style={styles.infoContainer}>
             <Ionicons name="location" size={16} color='green' />
-            <Text style={theme.spacer.leftSm}>{address}</Text>
+            <Text style={theme.spacer.leftSm}>Address</Text>
           </View>
+            <Text>{address}</Text>
 
           <View style={styles.infoContainer}>
             <Ionicons name="alert-circle" size={16} color='green' />
-            <Text>{hours.description}</Text>
+            <Text style={theme.spacer.leftSm}>Additional Info</Text>
           </View>
+            <Text>{hours.description}</Text>
           <View style={styles.infoContainer}>
             <Ionicons name="time" size={16} color='green' />
             <Text style={theme.spacer.leftSm}>Hours of Operation</Text>
           </View>
-          {/* FIXME */}
+
           {days.map((day, i) => (
-            <Text key={i}>{day[i]}: {hours.standardHours[day[i+1]]}</Text>
+            <Text key={i}>{day.short}: {hours.standardHours[day.long]}</Text>
           ))}
-          {/* <Text>Mon: {hours.standardHours["monday"]}</Text>
-          <Text>Tue: {hours.standardHours["tuesday"]}</Text>
-          <Text>Wed: {hours.standardHours["wednesday"]}</Text>
-          <Text>Thu: {hours.standardHours["thursday"]}</Text>
-          <Text>Fri: {hours.standardHours["friday"]}</Text>
-          <Text>Sat: {hours.standardHours["saturday"]}</Text>
-          <Text>Sun: {hours.standardHours["sunday"]}</Text> */}
 
           <View style={styles.infoContainer}>
             <Ionicons name="logo-usd" size={16} color='green' />
-            <Text style={theme.spacer.leftSm}>Admission Costs</Text>
+            <Text style={theme.spacer.leftSm}>Admissions</Text>
           </View>
           {park.entranceFees.length &&
             park.entranceFees.map((fee, i) => (
@@ -62,7 +57,6 @@ export default function ParkDetails() {
                   ${fee.cost} - {fee.title}
                 </Text>
                 <Text>
-                  {/* <Ionicons name="information-circle" size={14} />{" "} */}
                   {fee.description}
                 </Text>
                 <View style={theme.horizontalRule.sm} />
@@ -99,9 +93,12 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    // padding: theme.spacing[0]
-    paddingTop: theme.spacing[0],
-    paddingBottom: theme.spacing[0]
+    paddingTop: 3,
+    paddingBottom: 3,
+    paddingLeft: 3,
+    marginTop: 3,
+    marginBottom: 3,
+    backgroundColor: 'lightgray'
   },
   image: {
     height: screenWidth,
