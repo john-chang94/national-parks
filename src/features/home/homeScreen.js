@@ -8,7 +8,7 @@ import { theme } from "../../theme";
 import FeaturedCard from "./featuredCard";
 
 export default function HomeScreen({ navigation }) {
-  const { park, articles, featuredIsLoading, articlesIsLoading } =
+  const { featuredPark, articles, featuredIsLoading, articlesIsLoading } =
     useContext(HomeContext);
 
   return (
@@ -21,7 +21,7 @@ export default function HomeScreen({ navigation }) {
               <ActivityIndicator size='large' color={Colors.blue300} />
             </View>
           ) : (
-            <FeaturedCard park={park} navigation={navigation} />
+            <FeaturedCard featuredPark={featuredPark} navigation={navigation} />
           )}
 
           <View style={styles.horizontalRule} />
